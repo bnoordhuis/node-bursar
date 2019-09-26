@@ -79,6 +79,77 @@ rsaPublicKey.pkcs8 = function(options) {
 	return [prefix, ...lines, suffix].join('\n')
 }
 
+rsaPrivateKey.compute = function(privateExponent, prime1, prime2) {
+	// TODO(bnoordhuis) Check that prime1 and prime2 are actually prime?
+	const one = BigInt(1)
+
+	const prime1_minus_one = prime1 - one
+	const prime2_minus_one = prime2 - one
+	const modulus = prime1 * prime2
+	const totient = prime1_minus_one * prime2_minus_one
+
+	let publicExponent = BigInt(0x10001)
+	while (one !== gcd(totient, publicExponent))
+		publicExponent = nextprime(publicExponent)
+
+	const exponent1 = privateExponent % (prime1 - one)
+	const exponent2 = privateExponent % (prime2 - one)
+	const coefficient = 0n // FIXME
+	return {modulus, publicExponent, privateExponent, prime1, prime2, exponent1, exponent2, coefficient}
+}
+
+// `p` must be prime.
+function nextprime(p) {
+	const two = BigInt(2)
+
+	do
+		p += two
+	while (!isprobprime(p))
+}
+
+// Miller-Rabin primality test.
+function isprobprime(n, k=64) {
+	const m = n - 1n
+	const l = n - 2n
+
+	let d = m
+	let r = 0
+
+	do
+		++r, d /= 2n
+	while (d % 2n === 0n)
+
+next:
+	for (let i = 0; i < k; i++) {
+		const a = randrange(2n, l)
+
+		let x = a**d % n
+
+		if (x === 1n || x === m)
+			continue
+
+		for (let j = 1; j < r; j++) {
+			x = x**2n % n
+
+			if (x === 1n)
+				return false
+
+			if (x === m)
+				continue next
+		}
+
+		return false
+	}
+
+	return true
+}
+
+function randrange(a, b) {
+	const r = Number(b - a)
+	const i = r * Math.random()
+	return a + BigInt(i|0)
+}
+
 // RSAPublicKey ::= SEQUENCE {
 // 	modulus INTEGER,
 // 	publicExponent INTEGER,
