@@ -57,28 +57,6 @@ rsaPrivateKey.pkcs1 = function(options) {
 	return [prefix, ...lines, suffix].join('\n')
 }
 
-// PublicKeyInfo ::= SEQUENCE {
-// 	algorithm OBJECT IDENTIFIER,
-// 	parameters NULL, -- for our purposes
-// 	publicKey BIT STRING,
-// }
-rsaPublicKey.pkcs8 = function(options) {
-	const bytes = rsaPublicKey(options)
-	// XXX(bnoordhuis) It's unclear to me why openssl inserts an
-	// end-of-content marker byte (0x00) between the bit string's
-	// length and its payload but let's be compatible.
-	const inner = [
-		/* SEQUENCE */ 0x30, 0x0D,
-		/* OBJECT IDENTIFIER */ 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, // 1.2.840.113549.1.1.1
-		/* NULL */ 0x05, 0x00,
-		/* BIT STRING */ 0x03, ...length(1 + bytes.length), 0x00, ...bytes]
-	const outer = [/* SEQUENCE */ 0x30, ...length(inner.length), ...inner]
-	const lines = base64(outer)
-	const prefix = '-----BEGIN PUBLIC KEY-----'
-	const suffix = '-----END PUBLIC KEY-----'
-	return [prefix, ...lines, suffix].join('\n')
-}
-
 // RSAPublicKey ::= SEQUENCE {
 // 	modulus INTEGER,
 // 	publicExponent INTEGER,
