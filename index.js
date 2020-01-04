@@ -57,6 +57,26 @@ rsaPrivateKey.pkcs1 = function(options) {
 	return [prefix, ...lines, suffix].join('\n')
 }
 
+// PrivateKeyInfo ::= SEQUENCE {
+// 	version Version,
+// 	algorithm OBJECT IDENTIFIER,
+// 	privateKey OCTET STRING,
+// }
+rsaPrivateKey.pkcs8 = function(options) {
+	const bytes = rsaPrivateKey(options)
+	const inner = [
+		/* INTEGER */ 0x02, 0x01, 0x00, // version 0
+		/* SEQUENCE */ 0x30, 0x0D,
+		/* OBJECT IDENTIFIER */ 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, // 1.2.840.113549.1.1.1
+		/* NULL */ 0x05, 0x00,
+		/* OCTET STRING */ 0x04, ...length(bytes.length), ...bytes]
+	const outer = [/* SEQUENCE */ 0x30, ...length(inner.length), ...inner]
+	const lines = base64(outer)
+	const prefix = '-----BEGIN PRIVATE KEY-----'
+	const suffix = '-----END PRIVATE KEY-----'
+	return [prefix, ...lines, suffix].join('\n')
+}
+
 // RSAPublicKey ::= SEQUENCE {
 // 	modulus INTEGER,
 // 	publicExponent INTEGER,
