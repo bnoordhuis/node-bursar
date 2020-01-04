@@ -1,8 +1,8 @@
 {
-  "name": "keygen",
+  "name": "bursar",
   "version": "0.0.1",
   "description": "Generate RSA keys as PKCS#1, PKCS#8 or BER.",
-  "homepage": "https://github.com/bnoordhuis/node-keygen",
+  "homepage": "https://github.com/bnoordhuis/node-bursar",
   "author": {
     "name": "Ben Noordhuis",
     "email": "info@bnoordhuis.nl",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bnoordhuis/node-keygen.git"
+    "url": "git://github.com/bnoordhuis/node-bursar.git"
   },
   "engines": {
     "node": ">=8.0.0"
