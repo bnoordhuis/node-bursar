@@ -40,3 +40,15 @@ Like `rsaPublicKey()` but the result is returned as a PKCS#1-encoded string.
 ### rsaPublicKey.pkcs8(options)
 
 Like `rsaPublicKey()` but the result is returned as a PKCS#8-encoded string.
+
+<hr>
+
+### changelog
+
+#### v0.0.2 04/01/2020
+
+* implement missing `rsaPrivateKey.pkcs8()`
+
+#### v0.0.1 04/01/2020
+
+* initial release

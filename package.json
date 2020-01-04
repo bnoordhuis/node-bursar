@@ -1,6 +1,6 @@
 {
   "name": "bursar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate RSA keys as PKCS#1, PKCS#8 or BER.",
   "homepage": "https://github.com/bnoordhuis/node-bursar",
   "author": {
