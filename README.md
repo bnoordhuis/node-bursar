@@ -20,7 +20,6 @@ Long-form PKCS#1 field names are used for parameter names, not their
 Keep `prime1`, `prime2` and `privateExponent` secure at all times; the security
 of the private key depends on it.
 
-Example:
 ```js
 const {rsaPrivateKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
@@ -43,7 +42,6 @@ console.log(key)
 
 Like `rsaPrivateKey()` but the result is returned as a PKCS#1-encoded string.
 
-Example:
 ```js
 const {rsaPrivateKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
@@ -67,7 +65,6 @@ console.log(key)
 
 Like `rsaPrivateKey()` but the result is returned as a PKCS#8-encoded string.
 
-Example:
 ```js
 const {rsaPrivateKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
@@ -94,7 +91,6 @@ console.log(key)
   - `publicExponent` {BigInt|Buffer|Uint8Array} RSA `e` parameter.
 * Returns: {Array} BER-encoded RSA public key.
 
-Example:
 ```js
 const {rsaPublicKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
@@ -108,7 +104,6 @@ console.log(Buffer.from(key))
 
 Like `rsaPublicKey()` but the result is returned as a PKCS#1-encoded string.
 
-Example:
 ```js
 const {rsaPublicKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
@@ -124,7 +119,6 @@ console.log(key)
 
 Like `rsaPublicKey()` but the result is returned as a PKCS#8-encoded string.
 
-Example:
 ```js
 const {rsaPublicKey} = require('bursar')
 const modulus = 0xBAD5ECn	// insecure; example only
