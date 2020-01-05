@@ -140,6 +140,10 @@ console.log(key)
 
 ### changelog
 
+#### v0.0.3 05/01/2020
+
+* add examples to README
+
 #### v0.0.2 04/01/2020
 
 * implement missing `rsaPrivateKey.pkcs8()`
