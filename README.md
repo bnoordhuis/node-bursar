@@ -40,7 +40,8 @@ console.log(key)
 
 ### rsaPrivateKey.pkcs1(options)
 
-Like `rsaPrivateKey()` but the result is returned as a PKCS#1-encoded string.
+Like [`rsaPrivateKey()`](#rsaprivatekeypkcs1options) but the result is returned
+as a PKCS#1-encoded string.
 
 ```js
 const {rsaPrivateKey} = require('bursar')
@@ -63,7 +64,8 @@ console.log(key)
 
 ### rsaPrivateKey.pkcs8(options)
 
-Like `rsaPrivateKey()` but the result is returned as a PKCS#8-encoded string.
+Like [`rsaPrivateKey()`](#rsaprivatekeypkcs1options) but the result is returned
+as a PKCS#8-encoded string.
 
 ```js
 const {rsaPrivateKey} = require('bursar')
@@ -102,7 +104,8 @@ console.log(Buffer.from(key))
 
 ### rsaPublicKey.pkcs1(options)
 
-Like `rsaPublicKey()` but the result is returned as a PKCS#1-encoded string.
+Like [`rsaPublicKey()`](#rsapublickeyoptions) but the result is returned
+as a PKCS#1-encoded string.
 
 ```js
 const {rsaPublicKey} = require('bursar')
@@ -117,7 +120,8 @@ console.log(key)
 
 ### rsaPublicKey.pkcs8(options)
 
-Like `rsaPublicKey()` but the result is returned as a PKCS#8-encoded string.
+Like [`rsaPublicKey()`](#rsapublickeyoptions) but the result is returned
+as a PKCS#8-encoded string.
 
 ```js
 const {rsaPublicKey} = require('bursar')
